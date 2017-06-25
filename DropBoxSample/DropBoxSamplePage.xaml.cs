@@ -17,19 +17,18 @@ namespace DropBoxSample
 {
     public partial class DropBoxSamplePage : ContentPage
     {
-        private static string _GeneratedAccessToken = "Input Generated Access Token";
 
+        private static string _GeneratedAccessToken = "Input Generated Access Token";
 
         #region 接続確認
         /// <summary>
         /// DropBox接続確認
         /// </summary>
         /// <returns>The confirm.</returns>
-        static async Task Confirm()
+        private async Task Confirm()
         {
             using (var dbx = new DropboxClient(_GeneratedAccessToken))
             {
-
                 var full = await dbx.Users.GetCurrentAccountAsync();
                 System.Diagnostics.Debug.WriteLine("{0} - {1}", full.Name.DisplayName, full.Email);
             }
@@ -63,19 +62,25 @@ namespace DropBoxSample
 		}
         #endregion
 
-        void ButtonOK_Clicked(object sender, System.EventArgs e)
-        {
-            //var task = Task.Run((Func<Task>)DropBoxSample.DropBoxSamplePage.Confirm);
-            var task = Task.Run((Func<Task>)Upload);
-            task.Wait();
-        }
-
         public DropBoxSamplePage()
         {
             InitializeComponent();
 
 
             buttonOK.Clicked += ButtonOK_Clicked;
+            buttonConfim.Clicked += ButtonConfim_Clicked;
         }
+
+		void ButtonConfim_Clicked(object sender, EventArgs e)
+		{
+            var task = Task.Run((Func<Task>)Confirm);
+			task.Wait();
+		}
+
+		void ButtonOK_Clicked(object sender, System.EventArgs e)
+		{
+			var task = Task.Run((Func<Task>)Upload);
+			task.Wait();
+		}
     } 
 }

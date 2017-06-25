@@ -3,9 +3,10 @@
     <StackLayout
         HorizontalOptions = "Center"
              VerticalOptions = "Center">
-        <Label Text="Welcome to Xamarin Forms!"  />
+        <Label Text="Xamarin Dropbox Sample!"  />
+        <Button x:Name="buttonConfim" Text="接続確認" />
         <Entry x:Name="entText" Placeholder="文字を入力してください" />
-        <Button x:Name="buttonOK" Text="連携" />
+        <Button x:Name="buttonOK" Text="ファイル更新" />
     </StackLayout>
 
 </ContentPage>
